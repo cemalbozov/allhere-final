@@ -26,28 +26,36 @@ router.get("/products/search", function (req, res) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         var products = [];
 
-        Product.find({ category: regex }).sort({ $natural: -1 }).lean().then(prds => {
-            prds.forEach(prd => {
-                products.push(prd)
-            });
-
-        });
 
         Product.find({ name: regex }).sort({ $natural: -1 }).lean().then(prds => {
+            let products = [];
             prds.forEach(prd => {
                 products.push(prd)
             });
+            if (products.length > 0)
+                res.render("products", { products: products, title: req.query.search })
+            else {
+                Product.find({ brand: regex }).sort({ $natural: -1 }).lean().then(prds => {
+                    let products = [];
+                    prds.forEach(prd => {
+                        products.push(prd)
+                    });
+                    if (products.length > 0)
+                        res.render("products", { products: products, title: req.query.search })
+                    else {
+                        Product.find({ category: regex }).sort({ $natural: -1 }).lean().then(prds => {
+                            let products = [];
+                            prds.forEach(prd => {
+                                products.push(prd)
+                            });
 
+                            res.render("products", { products: products, title: req.query.search })
+
+                        });
+                    }
+                });
+            }
         });
-
-        Product.find({ brand: regex }).sort({ $natural: -1 }).lean().then(prds => {
-            prds.forEach(prd => {
-                products.push(prd)
-
-            });
-        });
-
-        res.render("products", { products: products, title: req.query.search })
 
     }
 });
