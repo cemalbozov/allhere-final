@@ -3,9 +3,9 @@
         <div class="row gy-3">
             {{> admin-nav}}
             <div class="col-lg-9">
-
-                <div class="acc-title">Ürün Ekle</div>
                 {{#if product}}
+                <div class="acc-title">Ürün Düzenle</div>
+                
                 <div class="acc-form">
                     <form name="adress-form" class="row g-1 mb-4" action="/admin/urun-duzenle/update-prd/{{product._id}}" method="POST"
                         enctype="multipart/form-data">
@@ -44,7 +44,7 @@
                 </div>
 
                 {{else}}
-
+                <div class="acc-title">Ürün Düzenle</div>
                 <div class="acc-form">
                     <form name="adress-form" class="row g-1 mb-4" action="/admin/urun-ekle/add-prd" method="POST"
                         enctype="multipart/form-data">
