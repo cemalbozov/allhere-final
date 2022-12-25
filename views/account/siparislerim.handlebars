@@ -1,0 +1,57 @@
+<section>
+    <div class="container my-5">
+        <div class="row gy-3">
+            {{> account-nav}}
+            <div class="col-lg-9 mb-4">
+                <div class="acc-title">Siparişlerim</div>
+
+                <div class="cart-rows">
+                    {{#each orders}}
+
+                    <div class="cart-row my-5">
+                        {{#each this}}
+                        <div class="cart-prd pb-5">
+
+                            <div class="d-flex flex-row">
+                                <div class="prd-image">
+                                    <img src="{{this.img}}" alt="">
+                                </div>
+                                <div class="prd-body">
+                                    <div class="prd-title">
+                                        <a href="/product/{{this._id}}">
+                                            <b>{{this.brand}}</b>
+                                            {{this.name}}
+                                        </a>
+                                    </div>
+                                    <div class="prd-info">
+                                        <span>Marka : </span>
+                                        <b>{{this.brand}}</b>
+                                    </div>
+                                    <div class="prd-info">
+                                        <span>Ürün Kodu : </span>
+                                        <b>{{this._id}}</b>
+                                    </div>
+                                    {{#if this.discount}}
+                                    <div class="prd-amount my-3 "><b>{{this.discprice}} ₺</b></div>
+                                    {{else}}
+                                    <div class="prd-amount my-3 "><b>{{this.price}} ₺</b></div>
+                                    {{/if}}
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {{/each}}
+
+
+
+                    </div>
+                    {{/each}}
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

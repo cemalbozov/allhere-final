@@ -1,0 +1,47 @@
+<section>
+    <div class="container my-5">
+        <div class="row gy-3">
+            {{> admin-nav}}
+            <div class="col-lg-9">
+
+                <div class="acc-title">Ürün Düzenle</div>
+
+                <div class="row">
+                    {{#each products}}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <figure class="card shadow">
+                            <a href="/admin/urun-duzenle/{{this._id}}" class="img-wrap">
+                                {{#if this.discount}}
+                                <b class="badge bg-success"> İndirim </b>
+                                {{/if}}
+                                <img src="{{this.img}}" alt="">
+                            </a>
+                            <figcaption class="info-wrap border-top">
+
+                                <form action="/admin/urun-duzenle/delete-prd/{{this._id}}?_method=DELETE" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="float-end btn btn-outline-danger btn-icon" onclick="return confirm('Silmek istediğinizden emin misiniz ?')"><i
+                                            class="fa-solid fa-trash btn-icon"></i></button>
+
+                                </form>
+                                <a href="/admin/urun-duzenle/{{this._id}}" class="title text-truncate">
+                                    {{this.name}}
+                                </a>
+                                <div class="price-wrap">
+                                    {{#if this.discount}}
+                                    <span class="price">{{this.discprice}} ₺</span>
+                                    <del class="price-old px-1">{{this.price}} ₺</del>
+                                    {{else}}
+                                    <span class="price">{{this.price}} ₺</span>
+                                    {{/if}}
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

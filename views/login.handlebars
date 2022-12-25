@@ -1,0 +1,42 @@
+<div class="container login bg-white my-5">
+
+    <div class="login-box">
+        <div class="welcome text-center my-3">
+
+            <h4 class="fw-bold">Hoşgeldiniz</h4>
+        </div>
+
+        {{#if sessionFlash.message}}
+        <div class="{{sessionFlash.class}}" role="alert">{{sessionFlash.message}}</div>
+        {{/if}}
+
+        <form class="p-5 login-form" action="/users/login" method="POST">
+            <div class="mb-3">
+                <label class="form-label">E-Posta </label>
+                <input type="email" name="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Şifreniz</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input">
+                <label class="form-check-label">Beni hatırla</label>
+            </div>
+
+            <div class="d-grid  mx-auto mb-3">
+                <button type="submit" class="btn btn-primary btn-login" type="button">GİRİŞ YAP</button>
+            </div>
+            <div class="container text-center">
+                <a href="" class="forgot-password">Şifremi unuttum</a>
+            </div>
+        </form>
+        <div class="text-center my-5">
+            <span>Üye değil misiniz? <a href="/users/register">Hemen üye olun!</a></span>
+        </div>
+
+
+
+    </div>
+
+</div>
