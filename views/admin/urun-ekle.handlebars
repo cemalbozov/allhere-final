@@ -1,0 +1,131 @@
+<section>
+    <div class="container my-5">
+        <div class="row gy-3">
+            {{> admin-nav}}
+            <div class="col-lg-9">
+
+                <div class="acc-title">Ürün Ekle</div>
+                {{#if product}}
+                <div class="acc-form">
+                    <form name="adress-form" class="row g-1 mb-4"
+                        action="/admin/urun-duzenle/update-prd/{{product._id}}" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Adı</div>
+                            <input type="text" class="form-control " name="prd_name" value="{{product.name}}" required>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Markası</div>
+                            <select name="prd_brand" class="form-control">
+                                <option value="{{product.brandid}}">{{product.brand}}</option>
+                                {{#each brands }}
+                                <option value="{{this._id}}">{{this.brand}}</option>
+                                {{/each}}
+                            </select>
+                            {{!-- <input type="text" class="form-control " name="prd_brand" value="{{product.brand}}"
+                                required> --}}
+
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Kategorisi</div>
+                            <select name="prd_category" class="form-control">
+                                <option value="{{product.categoryid}}">{{product.category}}</option>
+                                {{#each categories }}
+                                <option value="{{this._id}}">{{this.category}}</option>
+                                {{/each}}
+                            </select>
+                            {{!-- <input type="text" class="form-control " name="prd_category"
+                                value="{{product.category}}" required> --}}
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Fiyatı</div>
+                            <input type="number" class="form-control " name="prd_price" value="{{product.price}}"
+                                required>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-text">Ürün Açıklaması</div>
+                            <textarea name="prd_desc" class="form-control add-adress"
+                                required>{{product.prddesc}}</textarea>
+                            <label class="adress-check check form-label mt-3 mx-3 d-none"></label>
+                        </div>
+
+
+                        <div class="col-12 text-center my-4">
+                            <button type="submit" class="btn btn-secondary">Ürün Düzenle</button>
+                        </div>
+                    </form>
+                </div>
+
+                {{else}}
+
+                <div class="acc-form">
+                    <form name="adress-form" class="row g-1 mb-4" action="/admin/urun-ekle/add-prd" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Adı</div>
+                            <input type="text" class="form-control " name="prd_name" required>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Markası</div>
+                            <select name="prd_brand" class="form-control" required>
+                                {{#each brands }}
+                                <option value="{{this._id}}">{{this.brand}}</option>
+                                {{/each}}
+                            </select>
+                            {{!-- <input type="text" class="form-control " name="prd_brand" required> --}}
+
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Kategorisi</div>
+                            <select name="prd_category" class="form-control" required>
+                                {{#each categories }}
+                                <option value="{{this._id}}">{{this.category}}</option>
+                                {{/each}}
+                            </select>
+                            {{!-- <input type="text" class="form-control " name="prd_category" required> --}}
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Ürün Fiyatı</div>
+                            <input type="number" class="form-control " name="prd_price" required>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-text">Özellik Sayısı</div>
+                            <input type="number" class="form-control" value="1" id="attr-number">
+                        </div>
+
+                        <div class="form-attributes row mx-0 px-0 py-1">
+                            <div class="col-12 col-lg-6 px-0">
+                                <div class="form-text">Özellik 1 Adı</div>
+                                <input type="text" class="form-control " name="attributes" required>
+                            </div>
+                            <div class="col-12 col-lg-6 px-0">
+                                <div class="form-text">Özellik 1 Değeri</div>
+                                <input type="text" class="form-control " name="attributes" required>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-text">Ürün Açıklaması</div>
+                            <textarea name="prd_desc" class="form-control add-adress" required></textarea>
+                            <label class="adress-check check form-label mt-3 mx-3 d-none"></label>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-text">Ürün Resmi</div>
+                            <input class="form-control" type="file" id="formFile" name="prd_image" required>
+                        </div>
+
+                        <div class="col-12 text-center my-4">
+                            <button type="submit" class="btn btn-secondary">Ürün Ekle</button>
+                        </div>
+                    </form>
+                </div>
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/prd_attributes.js"></script>

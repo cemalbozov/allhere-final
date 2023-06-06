@@ -1,0 +1,85 @@
+<section>
+    <div class="container my-5">
+        <div class="row gy-3">
+            {{> account-nav}}
+            <div class="col-lg-9 mb-4">
+                <div class="acc-title">Adreslerim</div>
+
+                <div class="my-adresses  my-5">
+                    {{#each adresses}}
+
+                    <div class="adress-container">
+                        <div class="d-flex flex-row justify-content-between ">
+                            <div class="adress-body">
+                                <div class="adress-title py-2"><b>{{this.adress_h}}</b></div>
+                                <div class="adress py-2">
+                                    {{this.adress}} {{this.adress_district}} / {{this.adress_city}}
+                                </div>
+                                <div class="adress-phone">{{this.adress_tel}}</div>
+                            </div>
+                            <div class="adress-delete align-self-center">
+                                <form action="/account/adreslerim/delete/{{this.AdressId}}?_method=DELETE"
+                                    method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn"><i
+                                            class="fa-solid fa-trash btn-icon"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="acc-title">Adres Ekle</div>
+                <div class="acc-form">
+                    <form name="adress-form" class="row g-1 mb-4" action="/account/adreslerim/add" method="POST"
+                        onsubmit="return validateAdress()">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Adres Başlığı</div>
+                            <input type="text" class="form-control " name="adress_h">
+                            <label class="adress-h-check check form-label mt-3 mx-3 d-none">Adres başlığı farklı
+                                olmalıdır !</label>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Telefon numarası</div>
+                            <input type="tel" class="form-control " name="adress_tel">
+                            <label class="phone-check check form-label mt-3 mx-3 d-none">11 haneli Geçerli Telefon
+                                numarası
+                                girin</label>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">İl</div>
+                            <select id="Iller" name="adress_city" class="form-control">
+                                <option value="">Lütfen Bir İl Seçiniz</option>
+                            </select>
+                            <label class="adress-city-check check form-label mt-3 mx-3 d-none"></label>
+
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">İlçe</div>
+                            <select id="Ilceler" name="adress_district" class="form-control" disabled="disabled">
+                                <option value="">Lütfen Önce bir İl seçiniz</option>
+                            </select>
+                            <label class="adress-district-check check form-label mt-3 mx-3 d-none"></label>
+
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-text">Adres</div>
+                            <textarea name="adress" class="form-control add-adress"></textarea>
+                            <label class="adress-check check form-label mt-3 mx-3 d-none"></label>
+                        </div>
+
+                        <div class="col-12 text-center my-4">
+                            <button type="submit" class="btn btn-secondary">Adres Ekle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/validation.js"></script>
+<script src="/adress_opt.js"></script>

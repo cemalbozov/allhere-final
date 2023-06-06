@@ -1,0 +1,80 @@
+<section class="pt-3 slider">
+    <div class="container">
+        <main class="card">
+            <div class="row p-lg-2 p-1 justify-content-center">
+
+                <div class="col-lg-10">
+                    <div id="slider" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#slider" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#slider" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#slider" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="/products/campaign"> <img src="img/slider-1.jpeg" alt="" class="d-block w-100"></a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="/products/campaign"> <img src="img/slider-2.jpeg" alt="" class="d-block w-100"></a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="/products/campaign"> <img src="img/slider-3.jpeg" alt="" class="d-block w-100"></a>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#slider"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#slider"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+
+<section class="pt-3">
+    <div class="container">
+        <header>
+            <h3 class="mb-md-3 mb-0">Son Eklenenler</h3>
+        </header>
+
+        <div class="row">
+            {{#each products}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <figure class="card shadow">
+                    <a href="/product/{{this._id}}" class="img-wrap">
+                        {{#if this.discount}}
+                        <b class="badge bg-success"> İndirim </b>
+                        {{/if}}
+                        <img src={{this.img}} alt="">
+                    </a>
+                    <figcaption class="info-wrap border-top">
+
+                        <form action="/account/addfavorites/index" method="POST">
+                            <input type="hidden" name="id" value="{{this._id}}">
+                            <button type="submit" class="float-end btn btn-outline-primary btn-icon" type="button"><i
+                                    class="fa fa-heart"></i></button>
+
+                        </form>
+                        <a href="/product/{{this._id}}" class="title text-truncate">
+                            {{this.name}}
+                        </a>
+                        <div class="price-wrap">
+                            {{#if this.discount}}
+                            <span class="price">{{this.discprice}} ₺</span>
+                            <del class="price-old px-1">{{this.price}} ₺</del>
+                            {{else}}
+                            <span class="price">{{this.price}} ₺</span>
+                            {{/if}}
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

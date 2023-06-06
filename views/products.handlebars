@@ -1,0 +1,49 @@
+<section class="pt-3" style="min-height: 600px ;">
+    <div class="container">
+        {{#if products}}
+        <header>
+            <h3 class="mb-md-3 mb-0">{{title}} İçin Sonuçlar</h3>
+        </header>
+
+
+        <div class="row">
+            {{#each products}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <figure class="card shadow">
+                    <a href="/product/{{this._id}}" class="img-wrap">
+                        {{#if this.discount}}
+                        <b class="badge bg-success"> İndirim </b>
+                        {{/if}}
+                        <img src="{{this.img}}" alt="">
+                    </a>
+                    <figcaption class="info-wrap border-top">
+
+                        <form action="/account/addfavorites/index" method="POST">
+                            <input type="hidden" name="id" value="{{this._id}}">
+                            <button type="submit" class="float-end btn btn-outline-primary btn-icon" type="button"><i
+                                    class="fa fa-heart"></i></button>
+
+                        </form>
+                        <a href="/product/{{this._id}}" class="title text-truncate">
+                            {{this.name}}
+                        </a>
+                        <div class="price-wrap">
+                            {{#if this.discount}}
+                            <span class="price">{{this.discprice}} ₺</span>
+                            <del class="price-old px-1">{{this.price}} ₺</del>
+                            {{else}}
+                            <span class="price">{{this.price}} ₺</span>
+                            {{/if}}
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+            {{/each}}
+        </div>
+        {{else}}
+        <header>
+            <h3 class="mb-md-3 mb-0">{{title}} İçin Sonuç Bulunamadı</h3>
+        </header>
+        {{/if}}
+    </div>
+</section>

@@ -1,0 +1,32 @@
+<section>
+    <div class="container my-5">
+        <div class="row gy-3">
+            {{> account-nav}}
+            <div class="col-lg-9 mb-4">
+                <div class="acc-title">Cüzdanım</div>
+                {{#if sessionFlash.message}}
+                <div class="alert alert-success" role="alert">{{sessionFlash.message}}</div>
+                {{/if}}
+                <div class="acc-form">
+                    <form name="wallet-form" class="row g-1 mb-4" action="/account/wallet/add" method="POST"
+                        onsubmit="return validateWallet()">
+
+
+                        <div class="col-6">
+                            <input type="number" name="add_wallet" class="form-control"
+                                placeholder="Yüklemek İstediğiniz ₺">
+                            <label class="money-check check form-label mt-3 mx-3 d-none">Lütfen geçerli bir miktar
+                                giriniz
+                                !</label>
+                        </div>
+                        <div class="col-6"><button type="submit" class="btn btn-secondary">₺ Yükle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="/validation.js"></script>

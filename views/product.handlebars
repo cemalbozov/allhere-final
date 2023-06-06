@@ -1,0 +1,97 @@
+<div class="container my-5">
+    <div class="row gy-2">
+        <div class="col-12 col-md-8 col-lg-9">
+            <div id="product-detail">
+                <div class="row">
+                    <div class="col-12 col-lg-5">
+                        <div class="big-image img-wrap">
+                            <img src="{{product.img}}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7">
+                        <div class="container mb-3">
+                            <div class="product-code mb-4 ">Ürün Kodu: {{product._id}}</div>
+                            <h3><b>{{product.brand}}</b> {{product.name}}</h3>
+
+                            <div class="amount mt-5">
+                                {{#if product.discount}}
+                                <strong>{{product.discprice}} ₺</strong>
+                                {{else}}
+                                <strong> {{product.price}} ₺</strong>
+                                {{/if}}
+                            </div>
+                            <a href="">Taksit Seçenekleri</a>
+                            <hr>
+                            <table class="table table-borderless" id="urunDetay">
+                                <tbody>
+                                    {{#details attributes}}
+                                    {{/details}}
+                                </tbody>
+                            </table>
+                            <a href="#productDetails" class="btn p-1 go-section">Tüm Özellikler</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3 ">
+            <div class="product-info">
+                <div class="amount my-3 text-center">
+                    {{#if product.discount}}
+                    <strong>{{product.discprice}} ₺</strong>
+                    {{else}}
+                    <strong> {{product.price}} ₺</strong>
+                    {{/if}}
+                </div>
+                <div class="d-grid  mx-2 mb-3">
+                    <form action="/users/addshopcart/product" method="POST">
+                        <input type="hidden" name="id" value="{{product._id}}">
+                        <div class="d-block d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-sepet" type="button">Sepete Ekle</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="d-grid  mx-2 mb-3">
+                    <form action="/account/addfavorites/product" method="POST">
+                        <input type="hidden" name="id" value="{{product._id}}">
+                        <div class="d-block d-grid gap-2">
+                            <button type="submit" class="btn btn-outline-primary btn-login" type="button">Favorilere
+                                Ekle</button>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <small class="info-link">
+                    <strong>Kargo Süreçleri</strong> hakkında detaylı bilgi için
+                    <a href="">tıklayınız</a>
+                </small>
+                <small class="info-link">
+                    <strong>Garanti Süreçleri</strong> hakkında detaylı bilgi için
+                    <a href="">tıklayınız</a>
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-desc">
+        <div class="description">
+            <h3 class="p-5">Ürün Açıklaması</h3>
+            <p class="p-5 pt-0">{{product.prddesc}}</p>
+        </div>
+    </div>
+    <div id="productDetails" class="section-desc mb-3">
+        <div class="details">
+            <h3 class="p-5">Teknik Özellikler</h3>
+            <div class="table-details px-5 pb-5">
+                <table class="table table-borderless">
+                    <tbody>
+                        {{#fulldetails attributes}}
+                        {{/fulldetails}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

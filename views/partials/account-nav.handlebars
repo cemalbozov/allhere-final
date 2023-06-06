@@ -1,0 +1,31 @@
+<div class="col-lg-3">
+    <div id="accName" class="mb-5">
+        <div class="text-capitalize" id="username">
+            {{user.firstname}} {{user.lastname}}
+        </div>
+
+        <div class="wallet  mb-2"><a class="text-reset text-decoration-none" href="/account/wallet"><i
+                    class="fa-solid fa-wallet"></i> : <b> {{user.wallet}} ₺ </b></a>
+        </div>
+        <div class="logout"><a href="/users/logout">Çıkış</a></div>
+    </div>
+    <ul id="accNav" class="nav nav-pills flex-lg-column flex-row flex-nowrap">
+        <li class="nav-item">
+            <a href="/account/siparislerim" class="nav-link">Siparişlerim</a>
+        </li>
+        <li class="nav-item">
+            <a href="/account/favorilerim" class="nav-link">Favorilerim</a>
+        </li>
+        <li class="nav-item">
+            <a href="/account/adreslerim" class="nav-link">Adreslerim</a>
+        </li>
+        <li class="nav-item">
+            <a href="/account/uyelik-bilgilerim" class="nav-link">Üyelik Bilgilerim</a>
+        </li>
+        {{#if user.admin}}
+        <li class="nav-item">
+            <a href="/admin/urun-ekle" class="nav-link">Admin Paneli</a>
+        </li>
+        {{/if}}
+    </ul>
+</div>

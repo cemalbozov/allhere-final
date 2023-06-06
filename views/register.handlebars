@@ -1,0 +1,46 @@
+<div class="container login bg-white my-5">
+
+    <div class="login-box">
+        <div class="welcome text-center my-3">
+
+            <h4 class="fw-bold">Hoşgeldiniz</h4>
+
+        </div>
+
+        {{#if sessionFlash.message}}
+        <div class="{{sessionFlash.class}}" role="alert">{{sessionFlash.message}}</div>
+        {{/if}}
+
+        <form name="register-form" class="p-5 login-form" action="/users/register" onsubmit="return validateForm()"
+            method="POST">
+            <div class="row g-1 mb-3">
+                <div class="col">
+                    <input type="text" class="form-control" name="name" placeholder="Adınız">
+                    <label class="name-check check form-label d-none">Ad gerekli</label>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="lastname" placeholder="Soyadınız">
+                    <label class="lastname-check check form-label d-none">Soyad gerekli</label>
+                </div>
+            </div>
+            <input type="email" class="form-control mb-3" name="email" placeholder="E-posta">
+            <label class="email-check check form-label mb-3 d-none">Mail gerekli</label>
+
+            <input type="tel" class="form-control mb-3" name="phone" placeholder="Telefon Numaranız">
+            <label class="phone-check check form-label mb-3 d-none">11 haneli Geçerli Telefon numarası girin</label>
+
+            <input type="password" class="form-control mb-3" name="password" placeholder="Şifreniz">
+            <label class="password-check check form-label mb-3 d-none">Şifre gerekli</label>
+            <input type="password" class="form-control mb-3" name="password2" placeholder="Şifreniz (tekrar)">
+            <label class="password2-check check form-label mb-3 d-none">Şifreler uyuşmuyor!</label>
+
+            <div class="d-grid  mx-auto mb-3">
+                <button type="submit" class="btn btn-primary btn-login">ÜYE OL</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/validation.js"></script>

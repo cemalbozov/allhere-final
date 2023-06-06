@@ -1,0 +1,44 @@
+<section>
+    <div class="container my-5">
+        <div class="row gy-3">
+            {{> account-nav}}
+            <div class="col-lg-9 mb-4">
+                <div class="acc-title">Üyelik Bilgilerim</div>
+                {{#if sessionFlash.message}}
+                <div class="alert alert-success" role="alert">{{sessionFlash.message}}</div>
+                {{/if}}
+                <div class="acc-form">
+                    <form name="accform" class="row g-1 mb-4" action="/account/uyelik-bilgilerim/update" method="POST"
+                        onsubmit="return validateUpAcc()">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Adınız</div>
+                            <input type="text" value="{{user.firstname}}" class="form-control " disabled>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Soyadınız</div>
+                            <input type="text" value="{{user.lastname}}" class="form-control " disabled>
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">E-posta</div>
+                            <input type="email" value="{{user.email}}" class="form-control " disabled>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-text">Telefon Numaranız</div>
+                            <input type="tel" name="phone" value="{{user.phone}}" class="form-control ">
+                            <label class="phone-check check form-label mt-3 mx-3 d-none">11 haneli Geçerli Telefon
+                                numarası
+                                girin</label>
+                        </div>
+                        <div class="col-12 text-center my-4">
+                            <button type="submit" class="btn btn-secondary">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="/validation.js"></script>

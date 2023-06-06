@@ -1,0 +1,128 @@
+<section>
+    <div id="iyzipay-checkout-form" class="popup"></div>
+    <div class="container">
+        {{#if products}}
+        <div class="row gy-3 py-4">
+            <div class="col-12 col-lg-7">
+                <div class="cart" style="min-height: 500px;">
+                    <div class="cart-title">
+                        Sepetim
+                    </div>
+                    <div class="cart-rows">
+                        {{#each products}}
+                        <div class="cart-row my-5">
+                            <div class="cart-prd pb-5">
+                                <div class="d-flex flex-row">
+                                    <div class="prd-image">
+                                        <img src="{{this.img}}" alt="">
+                                    </div>
+                                    <div class="prd-body">
+                                        <div class="prd-title">
+                                            <a href="/product/{{this._id}}">
+
+                                                {{this.name}}
+                                            </a>
+                                        </div>
+                                        <div class="prd-info">
+                                            <span>Marka : </span>
+                                            <b>{{this.brand}}</b>
+                                        </div>
+                                        <div class="prd-info">
+                                            <span>Ürün Kodu : </span>
+                                            <b>{{this._id}}</b>
+                                        </div>
+                                        {{#if this.discount}}
+                                        <div class="prd-amount my-3 "><b>{{this.discprice}} ₺</b></div>
+                                        {{else}}
+                                        <div class="prd-amount my-3 "><b>{{this.price}} ₺</b></div>
+                                        {{/if}}
+
+                                    </div>
+                                    <div class="delete-prd">
+                                        <form action="/users/shopcart/{{this.idCartItem}}?_method=DELETE" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn"><i
+                                                    class="fa-solid fa-trash btn-icon"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="cart-links d-flex justify-content-between">
+                        <div><a href="/" class="cart-link">Alışverişe Devam Et</a></div>
+                        <div>
+                            <form action="/users/shopcart/delete/deleteall?_method=DELETE" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-link cart-link p-0">Sepeti
+                                    Boşalt</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                <div class="cart-sum">
+                    <div class="cart-title">
+                        Sipariş Özeti
+                    </div>
+                    {{#if products}}
+                    <div class="cart-size">{{#totalproduct products}}{{/totalproduct}} Ürün</div>
+                    <div class="card-prc-table">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Sipariş Tutarı (KDV Dahil)
+                                    </td>
+                                    <th>{{#totalprice products}}{{/totalprice}} ₺ </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-grid  mx-auto mt-5">
+                        {{#if adresses}}
+                        <form action="/users/shopcart/order/create_order"
+                            method="post">
+                            <div class="mb-3">
+                                <div class="form-text">Teslimat Adresi</div>
+
+                                <select class="form-control" name="adress" id="">
+                                    {{#each adresses}}
+                                    <option value="{{this.AdressId}}">{{this.adress_h}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="d-block d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-sepet" type="button">Siparişi
+                                    Tamamla</button>
+                            </div>
+                        </form>
+                        {{else}}
+                        <a href="/account/adreslerim" class="btn btn-link p-0 m-0">Sipariş vermek için adres
+                            ekleyiniz</a>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            {{else}}
+            <div class="cart-title py-4">
+                Sepetim
+            </div>
+            <div class="cart-empty-body d-flex flex-column align-items-center my-5" style="min-height: 500px;">
+                <div class="cart-empty-info fs-4 fw-bolder pb-3 ">Sepetinizde ürün bulunmamaktadır
+                </div>
+                <div class="cart-empty-button">
+                    <a class="btn btn-lg btn-primary" style="border-radius: 15px; color:white" href="/"><span>Alışverişe Başla</span></a>
+                </div>
+            </div>
+
+
+            {{/if}}
+        </div>
+    </div>
+</section>
