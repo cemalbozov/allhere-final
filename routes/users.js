@@ -306,9 +306,9 @@ router.post('/shopcart/order/checkoutform', (req, res) => {
 
 
                     database.query(
-                        `Select p._id From product p
-                inner join cartitem c on c.ProductId = p._id
-                inner join shopcart s on s.UserId = ?`,
+                        `Select p._id From allheredb.product p
+                        inner join allheredb.cartitem c on c.ProductId = p._id
+                        inner join allheredb.shopcart s on s.UserId = ? and s._id = c.ShopCartId`,
                         [req.session.userId], function (err, result) {
                             if (err) throw err;
 
