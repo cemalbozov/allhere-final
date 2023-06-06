@@ -418,7 +418,7 @@ router.post('/shopcart/order/create_order', (req, res) => {
             database.query(
                 `Select p.* From product p
                 inner join cartitem c on c.ProductId = p._id
-                inner join shopcart s on s.UserId = ?`,
+                inner join shopcart s on s.UserId = ? and s._id = c.ShopCartId`,
                 [req.session.userId], function (err, result) {
                     if (err) throw err;
 
